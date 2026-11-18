@@ -38,7 +38,8 @@ STATIC_MEMBERS = [
 
 # Xotira
 last_active = {}  # Oxirgi xabar yozgan vaqti (user_id: datetime)
-last_welcomed_date = {}  # Bugun salom berilgan sana (user_id: date)
+last_welcomed_date = {}    # Bugun salom berilgan sana (user_id: date)
+last_owner_reply_time = None
 active_members_list = []  # Guruhda yozgan a'zolar ID ro'yxati
 current_user_index = 0
 
@@ -69,9 +70,12 @@ async def track_activity(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if user.id not in active_members_list:
         active_members_list.append(user.id)
 
-    # 1-HOLAT: Agar xabar yozgan odam SIZ bo'lsangiz
+    # 1-HOLAT: Agar xabar yozgan odam SIZ bo'lsangiz — har 3 soatda 1 marta javob beradi
     if user.id == MY_OWNER_ID:
-        await update.message.reply_text("Akajonim yozishdan to'xtamang! 🚀")
+        global last_owner_reply_time
+        if last_owner_reply_time is None or (now - last_owner_reply_time) >= timedelta(hours=3):
+            last_owner_reply_time = now
+            await update.message.reply_text("Akajonim yozishdan to'xtamang! 🚀")
         return
 
     # 2-HOLAT: Boshqa a'zolar uchun — bir kunda faqat BIR MARTA javob beradi
