@@ -26,13 +26,13 @@ async def track_activity(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 # 2. Test vaqtida ishga tushib, maxsus e'lon yuboradigan funksiya
-async def send_startup_announcement(context: ContextTypes.DEFAULT_TYPE):
-    text = (
-        "Bot ishlab endi sizlarga Qobil akajonimning buyruqlari bilan "
-        "har kuni soat 08:30 da salomlashishingizni eslataman. "
-        "Qanaqadir shikoyatlar bo'ladigan bo'lsa akamga murojaat qilinglar!"
-    )
-    await context.bot.send_message(chat_id=GROUP_ID, text=text)
+# async def send_startup_announcement(context: ContextTypes.DEFAULT_TYPE):
+#     text = (
+#         "Bot ishlab endi sizlarga Qobil akajonimning buyruqlari bilan "
+#         "har kuni soat 08:30 da salomlashishingizni eslataman. "
+#         "Qanaqadir shikoyatlar bo'ladigan bo'lsa akamga murojaat qilinglar!"
+#     )
+#     await context.bot.send_message(chat_id=GROUP_ID, text=text)
 
 
 # 3. Har kuni soat 08:30 da ishlaydigan asosiy tekshiruv funksiyasi
