@@ -145,7 +145,7 @@ def main():
     job_queue = application.job_queue
 
     # TEST UCHUN: Bot ishga tushgandan 10 soniyadan keyin kechikkan navbat xabarini yuboradi
-    job_queue.run_once(test_delayed_greeting, when=10)
+    # job_queue.run_once(test_delayed_greeting, when=10)
 
     # DOIMIY UCHUN: Ertadan boshlab har kuni soat 08:30 da ishlaydi
     job_queue.run_daily(
