@@ -14,11 +14,7 @@ TASHKENT_TZ = timezone(timedelta(hours=5))
 
 # GURUHDAGI BARCHA A'ZOLARNING USERNAME LARINI SHU YERGA YOZING:
 STATIC_MEMBERS = [
-    "@Shamshidinova Gulnoza", "@BehzodSR", "@Yoqubjonova M",
-    "@Davronbek_Olimjonov1", "@Qobuljon_91",
-    # Qolgan sinfdoshlaringizni shu yerga qo'shing:
-     "@Муслимахон", "@Shirinaxon", "@Adhamjonov", "@Ulugbek", "@Xusniddin", "@***Mexribonnim***",
-     "@Fayzulloxon", "@IQBOLJON", "@Javlon222MM", "@Donyorbek", "@Dilyaa_o8", "@Gulbahor"
+    "@Gulnoza", "@BehzodSR", "@Yoqubjonova M", "@Davronbek_Olimjonov1", "@Shahlo", "@Shirinaxon", "@Adhamjonov", "@Ulugbek", "@Xusniddin", "@Jumagul", "@Fayzulloxon", "@Javlon222MM", "@Donyorbek", "@Dilyaa_o8", "@Gulbahor"
 ]
 
 # Xotira
