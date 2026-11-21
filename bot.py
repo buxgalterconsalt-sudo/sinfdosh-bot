@@ -5,7 +5,7 @@ from telegram.constants import ParseMode
 from telegram.ext import Application, MessageHandler, filters, ContextTypes
 
 # Tokeningizni va guruh ID raqamingizni yozing
-TOKEN = "9128227852:AAF2BAuehsWrhbZ57HqTOKHYfmWDH9tcH7Y"
+TOKEN = "9128227852:AAGz6rEoM80Oi-HQ0YmmuhoBL38g8FpMQ2k"
 GROUP_ID = -1002020577133
 MY_OWNER_ID = 1097025987
 
@@ -14,7 +14,7 @@ TASHKENT_TZ = timezone(timedelta(hours=5))
 
 # GURUHDAGI BARCHA A'ZOLARNING USERNAME LARINI SHU YERGA YOZING:
 STATIC_MEMBERS = [
-    "@Gulnoza", "@BehzodSR", "@Yoqubjonova M", "@Davronbek_Olimjonov1", "@Shahlo", "@Shirinaxon", "@Adhamjonov", "@Ulugbek", "@Xusniddin", "@Jumagul", "@Fayzulloxon", "@Javlon222MM", "@Donyorbek", "@Dilyaa_o8", "@Gulbahor"
+    "@Gulnoza", "@BehzodSR", "@YoqubjonovaM", "@Davronbek_Olimjonov1", "@Shahlo", "@Shirinaxon", "@Adhamjonov", "@Ulugbek", "@Xusniddin", "@Jumagul", "@Fayzulloxon", "@Javlon222MM", "@Donyorbek", "@Dilyaa_o8", "@Gulbahor"
 ]
 
 # Xotira
@@ -113,29 +113,6 @@ async def daily_greeting_duty(context: ContextTypes.DEFAULT_TYPE):
     except Exception as e:
         print(f"Xabar yuborishda xatolik: {e}")
 
-# 3. TEST REJIM: Kechikkan 08:30 navbati uchun bir martalik xabar
-async def test_delayed_greeting(context: ContextTypes.DEFAULT_TYPE):
-    global current_duty_index
-
-    if not STATIC_MEMBERS:
-        return
-
-    target_user = STATIC_MEMBERS[current_duty_index]
-
-    test_text = (
-        f"Assalomu alaykum guruh ahli! ☀️\n\n"
-        f"Bugun soat 08:30 da {target_user} ning salomlashish navbati edi, "
-        f"texnik nosozliklar tufayli endi eslatma yuboryapman. "
-        f"Marhamat, salomlaringizni yo'llang! 🤝🌸"
-    )
-
-    try:
-        await context.bot.send_message(chat_id=GROUP_ID, text=test_text)
-        # Bugungi navbat o'tgani uchun ertaga keyingi odamga o'tkazib qo'yamiz
-        current_duty_index = (current_duty_index + 1) % len(STATIC_MEMBERS)
-    except Exception as e:
-        print(f"Test xabarida xatolik: {e}")
-
 # Asosiy ishga tushirish qismi
 def main():
     application = Application.builder().token(TOKEN).build()
@@ -144,16 +121,13 @@ def main():
 
     job_queue = application.job_queue
 
-    # TEST UCHUN: Bot ishga tushgandan 10 soniyadan keyin kechikkan navbat xabarini yuboradi
-    # job_queue.run_once(test_delayed_greeting, when=10)
-
-    # DOIMIY UCHUN: Ertadan boshlab har kuni soat 08:30 da ishlaydi
+    # Har kuni Toshkent vaqti bilan soat 08:30 da ishlaydi
     job_queue.run_daily(
         daily_greeting_duty,
         time=time(hour=8, minute=30, second=0, tzinfo=TASHKENT_TZ)
     )
 
-    print("Bot ishga tushdi! 10 soniyadan keyin test xabari yuboriladi...")
+    print("Bot ishga tushdi! Har kuni soat 08:30 da navbat bilan eslatma yuboradi.")
     application.run_polling()
 
 if __name__ == "__main__":
